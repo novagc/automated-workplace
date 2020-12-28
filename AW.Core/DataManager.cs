@@ -1,12 +1,12 @@
 ﻿using AW.Auth;
 using AW.Auth.Basic;
-using AW.Behavior.Builder;
 using AW.Data.DataBase;
 using AW.Data.Models;
 using AW.Data.Models.Enums;
 using System.IO;
 using System.Security.Authentication;
 using System.Threading.Tasks;
+using AW.Behavior.Factory;
 
 namespace AW.Core
 {

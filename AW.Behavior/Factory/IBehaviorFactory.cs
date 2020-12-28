@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AW.Data.DataBase;
+﻿using AW.Data.DataBase;
 using AW.Data.Models;
 
-namespace AW.Behavior.Builder
+namespace AW.Behavior.Factory
 {
     interface IBehaviorFactory
     {

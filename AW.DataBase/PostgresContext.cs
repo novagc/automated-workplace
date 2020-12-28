@@ -25,7 +25,7 @@ namespace AW.Data.DataBase
             {
                 $"Host={_config.Host}",
                 $"Port={_config.Port}",
-                $"Database={_config.DataBase}",
+                $"Database={_config.DataBaseName}",
                 $"Username={_config.Login}",
                 $"Password={_config.Password}"
             }));

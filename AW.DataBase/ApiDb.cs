@@ -51,7 +51,7 @@ namespace AW.Data.DataBase
             }
             else
             {
-                throw new ArgumentException("{eq");
+                throw new ArgumentException();
             }
         }
 

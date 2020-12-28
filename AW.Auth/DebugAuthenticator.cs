@@ -8,7 +8,7 @@ namespace AW.Auth
 {
     public sealed class DebugAuthenticator: Authenticator
     {
-        public DebugAuthenticator(ApiDb apiBd) :base(apiBd) { }
+        public DebugAuthenticator(ApiDb apiDb) :base(apiDb) { }
 
         public override bool Verify(string login, string password)
         {

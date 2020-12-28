@@ -8,7 +8,7 @@ using AW.Data.Models.Enums;
 
 namespace AW.Behavior
 {
-    public class TechnicianBehavior: Basic.Behavior
+    public sealed class TechnicianBehavior : Basic.Behavior
     {
         public TechnicianBehavior(Worker worker, ApiDb db) :base(worker, db) { }
 

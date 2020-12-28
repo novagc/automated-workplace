@@ -35,11 +35,11 @@ namespace AW.GUI
             // waitLabel
             // 
             this.waitLabel.AutoSize = true;
-            this.waitLabel.Location = new System.Drawing.Point(42, 65);
+            this.waitLabel.Location = new System.Drawing.Point(34, 70);
             this.waitLabel.Name = "waitLabel";
-            this.waitLabel.Size = new System.Drawing.Size(166, 20);
+            this.waitLabel.Size = new System.Drawing.Size(184, 20);
             this.waitLabel.TabIndex = 0;
-            this.waitLabel.Text = "Выполнятся операция";
+            this.waitLabel.Text = "Операция выполняется...";
             // 
             // WaitForm
             // 
@@ -51,7 +51,7 @@ namespace AW.GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WaitForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WaitForm";
+            this.Text = "Подождите";
             this.Load += new System.EventHandler(this.WaitForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

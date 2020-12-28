@@ -14,6 +14,7 @@ namespace AW.GUI
 
         public WaitForm()
         {
+			Text = "Подождите";
             Instance = this;
             InitializeComponent();
         }

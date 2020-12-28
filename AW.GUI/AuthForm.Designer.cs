@@ -97,7 +97,7 @@ namespace AW.GUI
             this.Name = "AuthForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AuthForm";
+            this.Text = "Аутентификация";
             this.ResumeLayout(false);
             this.PerformLayout();
 

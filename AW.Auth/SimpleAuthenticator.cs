@@ -8,7 +8,7 @@ namespace AW.Auth
 {
     public class SimpleAuthenticator: Authenticator
     {
-        public SimpleAuthenticator(ApiDb apiBd) : base(apiBd) { }
+        public SimpleAuthenticator(ApiDb apiDb) : base(apiDb) { }
 
         public override bool Verify(string login, string password)
         {

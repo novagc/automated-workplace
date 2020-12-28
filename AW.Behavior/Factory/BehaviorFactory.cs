@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using AW.Data.DataBase;
 using AW.Data.Models;
 using AW.Data.Models.Enums;
 
-namespace AW.Behavior.Builder
+namespace AW.Behavior.Factory
 {
     public class BehaviorFactory: IBehaviorFactory
     {

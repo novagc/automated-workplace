@@ -10,6 +10,6 @@ namespace AW.Data.DataBase
         public string Password { get; set; }
         public string Host { get; set; }
         public int Port { get; set; }
-        public string DataBase { get; set; }
+        public string DataBaseName { get; set; }
     }
 }

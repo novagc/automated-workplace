@@ -12,6 +12,7 @@ namespace AW.GUI
         public static MainForm Instance;
 
         private bool create;
+        private bool load;
         private Order currentOrder;
         private Order[] orders;
         private Worker[] workers;
@@ -58,8 +59,10 @@ namespace AW.GUI
             orderList.Items.Clear();
             orderList.Items.AddRange(orders);
 
+            load = true;
             workerComboBox.Items.Clear();
             workerComboBox.Items.AddRange(workers);
+            load = false;
         }
 
         private void Clear()
@@ -106,6 +109,8 @@ namespace AW.GUI
         {
             if (orderList.SelectedIndex != -1)
             {
+                load = true;
+
                 currentOrder = orderList.Items[orderList.SelectedIndex] as Order;
 
                 titleBox.Text = currentOrder.Title;
@@ -121,6 +126,8 @@ namespace AW.GUI
                         workerComboBox.SelectedIndex = workerComboBox.Items.IndexOf(temp);
                     }
                 }
+
+                load = false;
             }
             else
             {
@@ -131,72 +138,93 @@ namespace AW.GUI
 
         private async void setStatusInWorkButton_Click(object sender, EventArgs e)
         {
-            Enabled = false;
-            WaitForm.Instance.Show();
-            
-            try
+            if (currentOrder != null)
             {
-                await Program.DataManager.AcceptOrderAsync(currentOrder.Id);
-                currentOrder.Status = Status.InWork;
-                WaitForm.Instance.Hide();
-                Enabled = true;
-            }
-            catch (SecurityException ex)
-            {
-                WaitForm.Instance.Hide();
-                MessageBox.Show(ex.Message);
-                Enabled = true;
-            }
+                Enabled = false;
+                WaitForm.Instance.Show();
+                
+                try
+                {
+                    await Program.DataManager.AcceptOrderAsync(currentOrder.Id);
+                    currentOrder.Status = Status.InWork;
+                    WaitForm.Instance.Hide();
+                    Enabled = true;
+                }
+                catch (SecurityException ex)
+                {
+                    WaitForm.Instance.Hide();
+                    MessageBox.Show(ex.Message);
+                    Enabled = true;
+                }
 
-            UpdateCurrentOrder();
-            Activate();
+                UpdateCurrentOrder();
+                Activate();
+            }
+            else
+            {
+                MessageBox.Show("Не выбран ни один заказ");
+            }
         }
 
         private async void setStatusFinishedButton_Click(object sender, EventArgs e)
         {
-            Enabled = false;
-            WaitForm.Instance.Show();
-
-            try
+            if (currentOrder != null)
             {
-                await Program.DataManager.FinishOrderAsync(currentOrder.Id);
-                currentOrder.Status = Status.Finished;
-                WaitForm.Instance.Hide();
-                Enabled = true;
-            }
-            catch (SecurityException ex)
-            {
-                WaitForm.Instance.Hide();
-                MessageBox.Show(ex.Message);
-                Enabled = true;
-            }
+                Enabled = false;
+                WaitForm.Instance.Show();
 
-            UpdateCurrentOrder();
-            Activate();
+                try
+                {
+                    await Program.DataManager.FinishOrderAsync(currentOrder.Id);
+                    currentOrder.Status = Status.Finished;
+                    WaitForm.Instance.Hide();
+                    Enabled = true;
+                }
+                catch (SecurityException ex)
+                {
+                    WaitForm.Instance.Hide();
+                    MessageBox.Show(ex.Message);
+                    Enabled = true;
+                }
+
+                UpdateCurrentOrder();
+                Activate();
+            }
+            else
+            {
+                MessageBox.Show("Не выбран ни один заказ");
+            }
         }
 
         private async void setStatusArchivedButton_Click(object sender, EventArgs e)
         {
-            Enabled = false;
-            WaitForm.Instance.Show();
-
-            try
+            if (currentOrder != null)
             {
-                await Program.DataManager.AcceptOrderAsync(currentOrder.Id);
-                Clear();
-                LoadData();
-                WaitForm.Instance.Hide();
-                Enabled = true;
-            }
-            catch (SecurityException ex)
-            {
-                WaitForm.Instance.Hide();
-                MessageBox.Show(ex.Message);
-                Enabled = true;
-            }
+                Enabled = false;
+                WaitForm.Instance.Show();
 
-            UpdateCurrentOrder();
-            Activate();
+                try
+                {
+                    await Program.DataManager.ArchiveOrderAsync(currentOrder.Id);
+                    Clear();
+                    LoadData();
+                    WaitForm.Instance.Hide();
+                    Enabled = true;
+                }
+                catch (SecurityException ex)
+                {
+                    WaitForm.Instance.Hide();
+                    MessageBox.Show(ex.Message);
+                    Enabled = true;
+                }
+
+                UpdateCurrentOrder();
+                Activate();
+            }
+            else
+            {
+                MessageBox.Show("Не выбран ни один заказ");
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -260,15 +288,18 @@ namespace AW.GUI
 
         private async void workerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (workerComboBox.SelectedIndex != -1)
+            if (!load)
             {
-                Enabled = false;
-                WaitForm.Instance.Show();
-                var worker = workerComboBox.Items[workerComboBox.SelectedIndex] as Worker;
-                await Program.DataManager.SetWorkerAsync(currentOrder.Id, worker.Id);
-                WaitForm.Instance.Hide();
-                Enabled = true;
-                Activate();
+                if (workerComboBox.SelectedIndex != -1)
+                {
+                    Enabled = false;
+                    WaitForm.Instance.Show();
+                    var worker = workerComboBox.Items[workerComboBox.SelectedIndex] as Worker;
+                    await Program.DataManager.SetWorkerAsync(currentOrder.Id, worker.Id);
+                    WaitForm.Instance.Hide();
+                    Enabled = true;
+                    Activate();
+                }
             }
         }
 
