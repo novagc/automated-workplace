@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AW.Auth\AW.Auth.csproj" />
+    <ProjectReference Include="..\AW.Behavior\AW.Behavior.csproj" />
+    <ProjectReference Include="..\AW.DataBase\AW.Data.DataBase.csproj" />
+    <ProjectReference Include="..\AW.Data\AW.Data.csproj" />
+  </ItemGroup>
+
+</Project>
