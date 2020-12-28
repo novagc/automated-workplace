@@ -49,7 +49,7 @@ namespace AW.Behavior
             if (temp?.Role == Role.Manager)
                 throw new ArgumentException();
 
-            _db.SerWorkerToOrder(orderId, workerId);
+            _db.SetWorkerToOrder(orderId, workerId);
         }
 
         public override void FinishOrder(int orderId)

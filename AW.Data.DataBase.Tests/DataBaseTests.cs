@@ -94,7 +94,7 @@ namespace AW.Data.DataBase.Tests
         {
             var orders = CreateAndGetOrder();
 
-            api.SerWorkerToOrder(orders.Item2.Id, api.GetAllWorkers().First().Id);
+            api.SetWorkerToOrder(orders.Item2.Id, api.GetAllWorkers().First().Id);
             var order = api.FindOrderById(orders.Item2.Id);
 
             Assert.True(order.WorkerId == api.GetAllWorkers().First().Id);

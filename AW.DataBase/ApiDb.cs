@@ -129,7 +129,7 @@ namespace AW.Data.DataBase
             }
         }
 
-        public void SerWorkerToOrder(int orderId, int workerId)
+        public void SetWorkerToOrder(int orderId, int workerId)
         {
             using var ctx = new PostgresContext(_config);
             var tempOrder = ctx.Orders.Find(orderId);
